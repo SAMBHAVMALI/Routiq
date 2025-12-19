@@ -82,11 +82,16 @@ function render() {
       }
     });
 
-    li.appendChild(text);
-    li.appendChild(flip);
-    li.appendChild(menuBtn);
-    li.appendChild(menu);
-    list.appendChild(li);
+    const rightBox = document.createElement("div");
+rightBox.className = "habit-right";
+
+rightBox.appendChild(flip);
+rightBox.appendChild(menuBtn);
+rightBox.appendChild(menu);
+
+li.appendChild(text);
+li.appendChild(rightBox);
+
   });
 }
 
