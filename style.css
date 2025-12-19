@@ -111,9 +111,11 @@ ul {
   font-size: 22px;
   cursor: pointer;
   margin-left: 10px;
-  color: #555;          /* 👈 THIS WAS MISSING */
+  color: #666;          /* force visibility */
+  font-weight: bold;
   line-height: 1;
 }
+
 
 .menu {
   position: absolute;
