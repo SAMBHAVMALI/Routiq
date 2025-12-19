@@ -5,11 +5,8 @@ const list = document.getElementById("habitList");
 let habits = JSON.parse(localStorage.getItem("habits")) || [];
 
 /*
-Each habit structure:
-{
-  name: string,
-  done: boolean
-}
+Each habit:
+{ name: string, done: boolean }
 */
 
 function save() {
@@ -26,7 +23,7 @@ function render() {
     li.innerHTML = `
       <span>${habit.name}</span>
 
-      <div class="flip ${habit.done ? "done" : ""}" onclick="toggleDone(${index})">
+      <div class="flip ${habit.done ? "done" : ""}" data-index="${index}">
         <div class="flip-inner">
           <div class="flip-face flip-front">✖</div>
           <div class="flip-face flip-back">✔</div>
@@ -34,11 +31,17 @@ function render() {
       </div>
     `;
 
+    li.querySelector(".flip").addEventListener("click", () => {
+      habits[index].done = !habits[index].done;
+      save();
+      render();
+    });
+
     list.appendChild(li);
   });
 }
 
-function addHabit() {
+addBtn.addEventListener("click", () => {
   const value = input.value.trim();
   if (!value) return;
 
@@ -46,18 +49,11 @@ function addHabit() {
   input.value = "";
   save();
   render();
-}
+});
 
-function toggleDone(index) {
-  habits[index].done = !habits[index].done;
-  save();
-  render();
-}
-
-addBtn.addEventListener("click", addHabit);
 render();
 
-/* Service Worker (do NOT change) */
+/* Service worker */
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("./service-worker.js");
 }
