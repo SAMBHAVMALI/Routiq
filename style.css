@@ -52,7 +52,7 @@ ul {
 .habit-right {
   display: flex;
   align-items: center;
-  gap: 8px; /* controls distance between tick and three dots */
+  gap: 6px; /* controls distance between tick and three dots */
 }
 
 .habit{
