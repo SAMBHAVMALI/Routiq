@@ -4,6 +4,14 @@ const list = document.getElementById("habitList");
 
 let habits = JSON.parse(localStorage.getItem("habits")) || [];
 
+/*
+Habit structure:
+{
+  name: string,
+  done: boolean
+}
+*/
+
 function save() {
   localStorage.setItem("habits", JSON.stringify(habits));
 }
@@ -15,6 +23,9 @@ function render() {
     const li = document.createElement("li");
     li.className = "habit";
 
+    const text = document.createElement("span");
+    text.textContent = habit.name;
+
     const flip = document.createElement("div");
     flip.className = "flip" + (habit.done ? " done" : "");
 
@@ -25,17 +36,12 @@ function render() {
       </div>
     `;
 
+    // 🔥 KEY: NO RE-RENDER ON CLICK
     flip.addEventListener("click", () => {
-      // 🔥 THIS IS THE KEY
-      flip.classList.toggle("done");
-
-      // Save state AFTER animation starts
+      flip.classList.toggle("done");       // animate
       habits[index].done = !habits[index].done;
-      save();
+      save();                              // persist
     });
-
-    const text = document.createElement("span");
-    text.textContent = habit.name;
 
     li.appendChild(text);
     li.appendChild(flip);
@@ -55,7 +61,7 @@ addBtn.addEventListener("click", () => {
 
 render();
 
-/* Service worker */
+/* Service worker (unchanged) */
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("./service-worker.js");
 }
