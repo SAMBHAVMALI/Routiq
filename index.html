@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Routiq</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="/routiq-app/manifest.json" />
+  <meta name="theme-color" content="#6C63FF" />
+
+  <meta name="description" content="Routiq – build habits and stay consistent" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="app">
+    <h1>Routiq</h1>
+
+    <div class="input-box">
+      <input
+        id="habitInput"
+        type="text"
+        placeholder="Enter habit..."
+        autocomplete="off"
+      />
+      <button id="addHabitBtn">Add</button>
+    </div>
+
+    <ul id="habitList"></ul>
+  </div>
+
+  <script src="app.js"></script>
+
+</body>
+</html>
