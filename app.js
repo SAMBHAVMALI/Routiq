@@ -2,25 +2,20 @@ const input = document.getElementById("habitInput");
 const addBtn = document.getElementById("addHabitBtn");
 const list = document.getElementById("habitList");
 
+if (!input || !addBtn || !list) {
+  console.error("HTML IDs missing. Check habitInput, addHabitBtn, habitList");
+}
+
 let habits = JSON.parse(localStorage.getItem("habits")) || [];
 
-// 🔧 migrate old data if needed
+// migrate old data safely
 habits = habits.map(h =>
-  typeof h === "string"
-    ? { name: h, done: false }
-    : h
+  typeof h === "string" ? { name: h, done: false } : h
 );
-
 
 function save() {
   localStorage.setItem("habits", JSON.stringify(habits));
 }
-
-function closeAllMenus() {
-  document.querySelectorAll(".menu").forEach(m => m.style.display = "none");
-}
-
-document.addEventListener("click", closeAllMenus);
 
 function render() {
   list.innerHTML = "";
@@ -61,7 +56,7 @@ function render() {
 
     menuBtn.addEventListener("click", (e) => {
       e.stopPropagation();
-      closeAllMenus();
+      document.querySelectorAll(".menu").forEach(m => m.style.display = "none");
       menu.style.display = "block";
     });
 
@@ -83,21 +78,21 @@ function render() {
     });
 
     const rightBox = document.createElement("div");
-rightBox.className = "habit-right";
+    rightBox.className = "habit-right";
+    rightBox.appendChild(flip);
+    rightBox.appendChild(menuBtn);
+    rightBox.appendChild(menu);
 
-rightBox.appendChild(flip);
-rightBox.appendChild(menuBtn);
-rightBox.appendChild(menu);
-
-li.appendChild(text);
-li.appendChild(rightBox);
-
+    li.appendChild(text);
+    li.appendChild(rightBox);
+    list.appendChild(li);
   });
 }
 
 addBtn.addEventListener("click", () => {
   const value = input.value.trim();
   if (!value) return;
+
   habits.push({ name: value, done: false });
   input.value = "";
   save();
@@ -106,7 +101,8 @@ addBtn.addEventListener("click", () => {
 
 render();
 
-/* Service Worker */
+/* Service worker */
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("./service-worker.js");
 }
+
