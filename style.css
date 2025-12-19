@@ -8,20 +8,24 @@ body {
   background: #f5f5f5;
 }
 
+/* App container */
 .app {
   max-width: 420px;
   margin: 40px auto;
   background: white;
   padding: 25px;
-  border-radius: 16px;
+  border-radius: 18px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.12);
 }
 
+/* Title */
 h1 {
   text-align: center;
   color: #6C63FF;
+  margin-bottom: 20px;
 }
 
+/* Input area */
 .input-box {
   display: flex;
   gap: 10px;
@@ -29,16 +33,18 @@ h1 {
 
 input {
   flex: 1;
-  padding: 10px;
+  padding: 12px;
   font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
 }
 
 button {
   background: #6C63FF;
   color: white;
   border: none;
-  padding: 10px 16px;
-  border-radius: 6px;
+  padding: 12px 18px;
+  border-radius: 8px;
   cursor: pointer;
 }
 
@@ -46,33 +52,35 @@ button {
 ul {
   list-style: none;
   padding: 0;
-  margin-top: 20px;
+  margin-top: 24px;
 }
 
-.habit-right {
-  display: flex;
-  align-items: center;
-  gap: 2px; /* controls distance between tick and three dots */
-}
-
-.habit{
+/* Single habit row */
+.habit {
   background: #f1f1f1;
   padding: 14px 16px;
-  margin-bottom: 12px;
-  border-radius: 12px;
+  margin-bottom: 14px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: relative;
 }
 
+/* Habit text */
+.habit span {
+  font-size: 16px;
+  color: #000;
+  word-break: break-word;
+}
+
+/* Right-side container (❌ + ⋮) */
 .habit-right {
   display: flex;
   align-items: center;
-  gap: 8px; /* controls distance between tick and three dots */
+  gap: 4px; /* 👈 CLOSE TO EACH OTHER */
 }
 
-/* ===== FLIP ===== */
+/* ===== FLIP BUTTON ===== */
 
 .flip {
   width: 46px;
@@ -122,23 +130,22 @@ ul {
   border: none;
   font-size: 22px;
   cursor: pointer;
-  margin-left: 10px;
-  color: #666;          /* force visibility */
-  font-weight: bold;
+  color: #666;
+  padding: 6px;
   line-height: 1;
 }
 
-
+/* Dropdown */
 .menu {
   position: absolute;
-  right: 12px;
-  top: 55px;
+  right: 16px;
+  top: 60px;
   background: white;
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   display: none;
   overflow: hidden;
-  z-index: 10;
+  z-index: 20;
 }
 
 .menu button {
@@ -147,6 +154,8 @@ ul {
   padding: 10px 14px;
   width: 100%;
   text-align: left;
+  border: none;
+  cursor: pointer;
 }
 
 .menu button:hover {
